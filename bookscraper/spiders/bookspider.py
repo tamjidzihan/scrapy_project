@@ -30,12 +30,14 @@ class BookspiderSpider(scrapy.Spider):
     def parse_books_url(self,response):
         tables = response.css('table tr')
         bookitem= BookItem()
+
         bookitem['title']= response.css('.product_main h1::text').get(),
-        bookitem['product_type']= tables[1].css('td::text').get(),
-        bookitem['price']= response.css('p.price_color::text').get(),
-        bookitem['price_excl_tax']= tables[2].css('td::text').get(),
-        bookitem['price_incl_tax']= tables[3].css('td::text').get(),
-        bookitem['availability']=  tables[5].css('td::text').get(),
+        bookitem['product_type']= tables[1].css('td ::text').get(),
+        bookitem['price']= response.css('p.price_color ::text').get(),
+        bookitem['price_excl_tax']= tables[2].css('td ::text').get(),
+        bookitem['price_incl_tax']= tables[3].css('td ::text').get(),
+        bookitem['availability']=  tables[5].css('td ::text').get(),
         bookitem['catagory']= response.xpath('//*[@id="default"]/div/div/ul/li[3]/a/text()').get()
+        bookitem['description'] = response.xpath("//div[@id='product_description']/following-sibling::p/text()").get(),
         
         yield bookitem
