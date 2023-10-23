@@ -13,6 +13,29 @@ SPIDER_MODULES = ["bookscraper.spiders"]
 NEWSPIDER_MODULE = "bookscraper.spiders"
 
 
+FEEDS = {
+    'booksdata.json':{'format':'json'},
+   #  'booksdata.csv':{'format':'csv'}
+}
+
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Use the appropriate database engine
+#         'NAME': 'bookscrape',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',  # Change to your database host
+#         'PORT': '5432',       # Change to your database port
+#     }
+# }
+
+
+
+
+
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "bookscraper (+http://www.yourdomain.com)"
 
@@ -44,15 +67,15 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-SPIDER_MIDDLEWARES = {
-   "bookscraper.middlewares.BookscraperSpiderMiddleware": 543,
-}
+# SPIDER_MIDDLEWARES = {
+#    "bookscraper.middlewares.BookscraperSpiderMiddleware": 543,
+# }
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-DOWNLOADER_MIDDLEWARES = {
-   "bookscraper.middlewares.BookscraperDownloaderMiddleware": 543,
-}
+# DOWNLOADER_MIDDLEWARES = {
+#    "bookscraper.middlewares.BookscraperDownloaderMiddleware": 543,
+# }
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -64,7 +87,13 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    "bookscraper.pipelines.BookscraperPipeline": 300,
+   'bookscraper.pipelines.SaveToPostgresPipeline': 400,
 }
+
+
+
+
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

@@ -20,5 +20,5 @@ class BookItem(scrapy.Item):
     price_incl_tax = scrapy.Field()
     availability = scrapy.Field()
     description = scrapy.Field()
-    catagory = scrapy.Field()
+    category = scrapy.Field()
 
